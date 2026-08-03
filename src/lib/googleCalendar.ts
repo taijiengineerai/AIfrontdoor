@@ -1,15 +1,14 @@
 import { google } from "googleapis";
-import path from "path";
 
-const keyPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH ?? "./google-service-account.json";
 const calendarId = process.env.GOOGLE_CALENDAR_ID ?? "primary";
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: path.resolve(keyPath),
-  scopes: ["https://www.googleapis.com/auth/calendar"],
-});
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_OAUTH_CLIENT_ID,
+  process.env.GOOGLE_OAUTH_CLIENT_SECRET
+);
+oauth2Client.setCredentials({ refresh_token: process.env.GOOGLE_OAUTH_REFRESH_TOKEN });
 
-const calendar = google.calendar({ version: "v3", auth });
+const calendar = google.calendar({ version: "v3", auth: oauth2Client });
 
 export async function findFreeSlots(startIso: string, endIso: string) {
   const res = await calendar.freebusy.query({

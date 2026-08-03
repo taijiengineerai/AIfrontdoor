@@ -6,7 +6,8 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "setup:assistant": "ts-node-dev --transpile-only scripts/create-assistant.ts"
+    "setup:assistant": "ts-node-dev --transpile-only scripts/create-assistant.ts",
+    "setup:google-token": "ts-node-dev --transpile-only scripts/get-google-token.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
