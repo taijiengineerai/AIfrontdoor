@@ -24,9 +24,22 @@ async function main() {
   if (!vapiKey) throw new Error("VAPI_PRIVATE_KEY not set in .env");
   if (!serverUrl) throw new Error("PUBLIC_SERVER_URL not set in .env (use ngrok/cloudflared in dev)");
 
+  // NOTE: this bakes today's date into a static prompt, so it goes stale after ~24h.
+  // Rerun this script daily (or move to per-call dynamic assistant resolution) before
+  // relying on this for a real client - see README.
+  const currentDatetime = new Date().toLocaleString("en-US", {
+    timeZone: "America/Chicago",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  }) + " Central Time";
+
   const raw = fs.readFileSync(path.join(__dirname, "../vapi/assistant-config.json"), "utf-8");
   let templated = raw.replace(/{{PUBLIC_SERVER_URL}}/g, serverUrl);
-  for (const [key, value] of Object.entries(CLIENT_CONFIG)) {
+  for (const [key, value] of Object.entries({ ...CLIENT_CONFIG, current_datetime: currentDatetime })) {
     templated = templated.replaceAll(`{{${key}}}`, value);
   }
   const config = JSON.parse(templated);
