@@ -16,13 +16,16 @@ app.get("/health", (_req, res) => {
 // call event (tool calls, end-of-call report, etc.) here as { message: {...} }
 app.post("/vapi/webhook", async (req, res) => {
   const message = req.body?.message;
+  console.log(`[webhook] received type=${message?.type ?? "unknown"} at ${new Date().toISOString()}`);
   if (!message) return res.status(400).json({ error: "missing message" });
 
   switch (message.type) {
     case "tool-calls": {
+      console.log("[webhook] tool-calls:", JSON.stringify(message.toolCalls?.map((tc: any) => tc.function?.name)));
       const results = await Promise.all(
         (message.toolCalls ?? []).map((tc: any) => runToolCall(tc))
       );
+      console.log("[webhook] tool-calls results:", JSON.stringify(results));
       return res.json({ results });
     }
     case "end-of-call-report":
