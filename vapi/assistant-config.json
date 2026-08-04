@@ -47,7 +47,17 @@
   },
   "serverUrl": "{{PUBLIC_SERVER_URL}}/vapi/webhook",
   "analysisPlan": {
-    "summaryPrompt": "Summarize the call in 1-2 sentences: what the caller needed, whether it was booked/emergency/message-taken, and any key details.",
-    "successEvaluationPrompt": "Did the assistant either book an appointment, correctly escalate an emergency, or take a complete message? Answer true or false."
+    "summaryPlan": {
+      "enabled": true,
+      "messages": [
+        { "role": "system", "content": "Summarize the call in 1-2 sentences: what the caller needed, whether it was booked/emergency/message-taken, and any key details." }
+      ]
+    },
+    "successEvaluationPlan": {
+      "enabled": true,
+      "messages": [
+        { "role": "system", "content": "Did the assistant either book an appointment, correctly escalate an emergency, or take a complete message? Answer true or false." }
+      ]
+    }
   }
 }
