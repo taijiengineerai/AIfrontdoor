@@ -1,5 +1,5 @@
 {
-  "name": "{{business_name}} AI Receptionist",
+  "name": "{{business_name}}",
   "firstMessage": "Thanks for calling {{business_name}}, this is Alex, how can I help you today?",
   "model": {
     "provider": "anthropic",
@@ -43,7 +43,7 @@
   },
   "voice": {
     "provider": "11labs",
-    "voiceId": "replace-with-chosen-voice-id"
+    "voiceId": "21m00Tcm4TlvDq8ikWAM"
   },
   "serverUrl": "{{PUBLIC_SERVER_URL}}/vapi/webhook",
   "analysisPlan": {

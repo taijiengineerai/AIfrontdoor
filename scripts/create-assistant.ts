@@ -8,12 +8,13 @@ import path from "path";
 // Fill in the CLIENT_CONFIG below per client before running, or turn this into a
 // CLI that reads from Supabase once you're onboarding client #2+.
 
+// TEST/PLACEHOLDER data — swap for a real pilot client's details before going live.
 const CLIENT_CONFIG = {
-  business_name: "REPLACE_ME",
-  service_area: "REPLACE_ME (e.g. Austin, TX and surrounding suburbs)",
-  business_hours: "REPLACE_ME (e.g. Mon-Sat 7am-7pm, 24/7 emergency line)",
-  services_list: "REPLACE_ME (e.g. AC repair, furnace repair, water heater install, drain cleaning)",
-  pricing_notes: "REPLACE_ME (e.g. Diagnostic fee is $89, waived if repair is completed same visit)",
+  business_name: "Summit Home Services (TEST)",
+  service_area: "Austin, TX and surrounding suburbs",
+  business_hours: "Mon-Sat 7am-7pm, 24/7 emergency line",
+  services_list: "AC repair, furnace repair, water heater install/repair, drain cleaning, general plumbing",
+  pricing_notes: "Diagnostic fee is $89, waived if repair is completed same visit. Emergency after-hours calls have a $150 dispatch fee.",
   callback_window: "1 hour",
 };
 
